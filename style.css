@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Simulação da folha A4 */
+#conteudo-pdf {
+    background: white;
+    width: 100%;
+    max-width: 794px; /* Largura A4 */
+    min-height: 1123px; /* Altura mínima A4 */
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Garante que a imagem não estoure a folha */
+#imagem-preview {
+    max-width: 100%;
+    height: auto;
+    display: none;
+    border: 1px solid #ddd;
+}
+
+/* Estilo do texto de instrução */
+#texto-instrucao {
+    text-align: center; 
+    color: #888; 
+    margin-top: 50%;
+}
+
+/* Estilo do botão */
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor Inteligente PDF</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+
+<body>
+    <h1>CONVERSOR DE ARQUIVOS EM PDF</h1>
+    
+    <input type="file" id="input-arquivo" accept="image/*">
+    <br>
+
+    <div id="conteudo-pdf"> 
+        <p id="texto-instrucao">
+            Selecione uma imagem para ver a prévia aqui...
+        </p>
+        <img id="imagem-preview">
+    </div>
+
+    <button id="botao_converter">Baixar PDF</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <script src="script.js" defer> </script>
+</body>
+</html>
