@@ -4,26 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversor Inteligente PDF</title>
-    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
     <link rel="stylesheet" href="style.css">
-    
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
 </head>
 
 <body>
     <h1>CONVERSOR DE IMAGENS EM PDF</h1>
-    
-    <input type="file" id="input-arquivo" accept="image/*">
-    <br>
-
-    <div id="conteudo-pdf"> 
-        <p id="texto-instrucao">
-            Selecione uma imagem para ver a prévia aqui...
-        </p>
-        <img id="imagem-preview">
-    </div>
-
-    <button id="botao_converter">Baixar PDF</button>
-<section style="max-width: 800px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05); text-align: left;">
+    <section style="max-width: 800px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05); text-align: left;">
     <h2 style="color: #333;">Como converter imagens para PDF grátis?</h2>
     <p style="line-height: 1.6; color: #666;">
         Transformar suas fotos em documentos PDF profissionais nunca foi tão fácil. Com nossa ferramenta online, você pode converter arquivos JPG, PNG e outros formatos de imagem em um arquivo PDF pronto para impressão ou envio por e-mail.
@@ -48,6 +36,19 @@
         &copy; 2024 Conversor PDF Online - Todos os direitos reservados.
     </footer>
 </section>
+    
+    <input type="file" id="input-arquivo" accept="image/*">
+    <br>
+
+    <div id="conteudo-pdf"> 
+        <p id="texto-instrucao">
+            Selecione uma imagem para ver a prévia aqui...
+        </p>
+        <img id="imagem-preview">
+    </div>
+
+    <button id="botao_converter">Baixar PDF</button>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     
     <script src="script.js" defer> </script>
