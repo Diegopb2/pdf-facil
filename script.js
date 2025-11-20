@@ -1,98 +1,56 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f7f6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    margin: 0;
-    color: #333;
-}
+const inputArquivo = document.getElementById('input-arquivo');
+const imgPreview = document.getElementById('imagem-preview');
+const textoInstrucao = document.getElementById('texto-instrucao');
+const conteudoPdf = document.getElementById('conteudo-pdf');
+const btnConverter = document.getElementById('botao_converter');
 
-h1 { color: #2c3e50; text-align: center; }
+let imagemEhPaisagem = false;
+let arquivoSelecionado = false; 
 
+inputArquivo.addEventListener('change', function(evento) {
+    const arquivo = evento.target.files[0];
 
-.info-section {
-    max-width: 800px;
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    margin-bottom: 30px;
-    line-height: 1.6;
-}
+    if (arquivo) {
+        const leitor = new FileReader();
 
-.info-section h2, .info-section h3 { color: #2c3e50; }
-.info-section p, .lista-passos, .lista-beneficios { color: #555; }
-.lista-passos, .lista-beneficios { margin-left: 20px; }
+        leitor.onload = function(e) {
+            imgPreview.src = e.target.result;
+            imgPreview.style.display = "block";
+            textoInstrucao.style.display = "none";
+            arquivoSelecionado = true; 
+            
+            const imagemTemp = new Image();
+            imagemTemp.src = e.target.result;
+            imagemTemp.onload = function() {
+                imagemEhPaisagem = this.width > this.height;
+            }
+        }
+        leitor.readAsDataURL(arquivo);
+    }
+});
 
+btnConverter.addEventListener('click', function() {
+    if (!arquivoSelecionado) {
+        alert("Por favor, selecione uma imagem primeiro!");
+        return;
+    }
 
-.controles { margin-bottom: 20px; }
+    const textoOriginal = btnConverter.innerText;
+    btnConverter.innerText = "Gerando PDF...";
+    btnConverter.disabled = true;
 
+    const orientacao = imagemEhPaisagem ? 'landscape' : 'portrait';
 
-#input-arquivo { display: none; }
-
-
-.botao-upload {
-    background-color: #6c5ce7;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s;
-    display: inline-block;
-}
-.botao-upload:hover { background-color: #5b4bc4; }
-
-
-#conteudo-pdf {
-    background: white;
-    width: 100%;
-    max-width: 595px; 
-    min-height: 300px;
-    padding: 0; 
-    box-shadow: 0 0 15px rgba(0,0,0,0.15);
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-#imagem-preview {
-    max-width: 100%;
-    height: auto;
-    display: none;
-}
-
-#texto-instrucao { color: #999; font-style: italic; }
-
-#botao_converter {
-    padding: 15px 40px;
-    font-size: 18px;
-    background-color: #00b894; 
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s, background 0.3s;
-}
-
-#botao_converter:hover {
-    background-color: #00a383;
-    transform: scale(1.05);
-}
-
-#botao_converter:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-    transform: none;
-}
-
-footer {
-    margin-top: 40px;
-    font-size: 12px;
-    color: #aaa;
-}
+    const opcoes = {
+        margin: [0, 0, 0, 0], 
+        filename: 'imagem-convertida.pdf',
+        image: { type: 'jpeg', quality: 1 }, 
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: orientacao }
+    };
+    
+    html2pdf().set(opcoes).from(conteudoPdf).save().then(() => {
+        btnConverter.innerText = textoOriginal;
+        btnConverter.disabled = false;
+    });
+});
