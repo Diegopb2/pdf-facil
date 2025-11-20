@@ -5,7 +5,7 @@ const conteudoPdf = document.getElementById('conteudo-pdf');
 const btnConverter = document.getElementById('botao_converter');
 
 let imagemEhPaisagem = false;
-let arquivoSelecionado = false; 
+let arquivoSelecionado = false;
 
 inputArquivo.addEventListener('change', function(evento) {
     const arquivo = evento.target.files[0];
@@ -15,10 +15,10 @@ inputArquivo.addEventListener('change', function(evento) {
 
         leitor.onload = function(e) {
             imgPreview.src = e.target.result;
-            imgPreview.style.display = "block";
+            imgPreview.style.display = "inline-block";
             textoInstrucao.style.display = "none";
-            arquivoSelecionado = true; 
-            
+            arquivoSelecionado = true;
+
             const imagemTemp = new Image();
             imagemTemp.src = e.target.result;
             imagemTemp.onload = function() {
@@ -42,15 +42,22 @@ btnConverter.addEventListener('click', function() {
     const orientacao = imagemEhPaisagem ? 'landscape' : 'portrait';
 
     const opcoes = {
-        margin: [0, 0, 0, 0], 
+        margin: [0, 0, 0, 0],
         filename: 'imagem-convertida.pdf',
-        image: { type: 'jpeg', quality: 0.98 }, 
-        html2canvas: { scale: 2, useCORS: true, scrolly: 0  },
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { 
+            scale: 2, 
+            useCORS: true, 
+            scrollY: 0,
+            backgroundColor: '#ffffff'
+        },
         jsPDF: { unit: 'mm', format: 'a4', orientation: orientacao }
     };
-    
-    html2pdf().set(opcoes).from(conteudoPdf).save().then(() => {
-        btnConverter.innerText = textoOriginal;
-        btnConverter.disabled = false;
-    });
+
+    setTimeout(() => {
+        html2pdf().set(opcoes).from(conteudoPdf).save().then(() => {
+            btnConverter.innerText = textoOriginal;
+            btnConverter.disabled = false;
+        });
+    }, 500);
 });
