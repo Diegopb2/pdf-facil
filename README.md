@@ -6,7 +6,7 @@
 
 Uma ferramenta web simples, rápida e segura para converter imagens (JPG, PNG) em arquivos PDF prontos para impressão. Desenvolvido com foco em processamento local (Client-side).
 
-🔗 **Acesse o projeto online:** [Clique aqui para testar](https://diegopb2.github.io)
+🔗 **Acesse o projeto online:** [Clique aqui para testar](https://diegopb2.github.io/pdf-facil/)
 
 ## 🚀 Funcionalidades
 
